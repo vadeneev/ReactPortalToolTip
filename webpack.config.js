@@ -1,14 +1,17 @@
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
 
 
 module.exports = {
+    mode: 'development',
+
     entry: {
         'index': path.resolve(__dirname, './src/index.js')
     },
 
     output: {
-        filename: './js/[name].js',
+        filename: './[name].js',
         path: path.resolve(__dirname, './public'),
     },
 
@@ -16,7 +19,12 @@ module.exports = {
         extensions: ['.js', '.jsx', '.less'],
         modules: [path.resolve(__dirname, 'node_modules')],
     },
-
+    plugins: [
+        new MiniCssExtractPlugin({
+            // both options are optional
+            filename: "[name].css",
+        })
+    ],
     module: {
         rules: [
             {
@@ -28,13 +36,20 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [
-                    "style-loader", // creates style nodes from JS strings
-                    "css-loader", // translates CSS into CommonJS
-                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
-                ]
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ],
             }
         ]
+    },
+
+    optimization: {
+        splitChunks: {
+            name: 'common',
+            chunks: 'all'
+        }
     },
 };
