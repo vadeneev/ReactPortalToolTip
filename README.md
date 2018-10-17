@@ -12,3 +12,18 @@ Simple React JS 16+ tooltip:
 # Limitations!
 
   - 1.0.0 contains only top direction
+  
+  
+# Simple declarative usage:
+
+```
+<PortalTipContainer>
+
+  <PortalTipContent>
+    Just simple text in tooltip.
+  </PortalTipContent>
+
+  <div className="demo-box">1</div>
+  
+</PortalTipContainer>
+```
