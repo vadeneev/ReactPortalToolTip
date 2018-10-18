@@ -105,7 +105,7 @@ class PortalTipContainer extends React.PureComponent {
   }
 
   isToolTipContent(element) {
-    return element.hasOwnProperty('type') && element.type.hasOwnProperty('name') && element.type.name === PortalTipContent.displayName;
+    return element.hasOwnProperty('type') && element.type.hasOwnProperty('displayName') && element.type.displayName === PortalTipContent.displayName;
   }
 
   getToolTipItems(children) {
@@ -144,7 +144,7 @@ const childrenPropTypeLogic = (props, propName, componentName) => {
   const prop = props[propName];
   const chArr = React.Children.toArray(prop);
 
-  if (!chArr.find(child => child.type.name === PortalTipContent.displayName)) {
+  if (!chArr.find(child => child.type.displayName === PortalTipContent.displayName)) {
     return new Error(`${componentName} requires PortalTipContent with content you want to show.`);
   }
 
