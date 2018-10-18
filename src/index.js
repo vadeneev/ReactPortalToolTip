@@ -2,7 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 import {PortalTipContainer} from "./Component/PortalTipContainer";
 import {PortalTipContent} from "./Component/PortalTipContent";
-import './Component/portal-tip.scss';
 
 const App = () => (
     <main>
