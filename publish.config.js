@@ -4,20 +4,33 @@ const path = require('path');
 
 module.exports = {
     mode: 'production',
+
     entry: {
-        //'index': ["@babel/polyfill", path.resolve(__dirname, './src/index.js')],
         'main':path.resolve(__dirname, './src/main.js'),
     },
 
     externals: {
-        'react': 'commonjs react',
-        'react-dom': 'commonjs react-dom'
+        // Don't bundle react or react-dom
+        react: {
+            commonjs: "react",
+            commonjs2: "react",
+            amd: "React",
+            root: "React"
+        },
+        "react-dom": {
+            commonjs: "react-dom",
+            commonjs2: "react-dom",
+            amd: "ReactDOM",
+            root: "ReactDOM"
+        }
     },
 
     output: {
         filename: './[name].js',
         path: path.resolve(__dirname, './dist'),
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'umd',
+        publicPath: '/dist/',
+        umdNamedDefine: true
     },
 
     resolve: {
