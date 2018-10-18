@@ -1,4 +1,10 @@
+[![Version](http://img.shields.io/npm/v/portal-tool-tip.svg)](https://www.npmjs.org/package/portal-tool-tip)
+
 # React Portal ToolTip
+
+```
+npm i portal-tool-tip
+```
 
 Watch demo [here](https://vadeneev.github.io/ReactPortalToolTip/index.html)
 
