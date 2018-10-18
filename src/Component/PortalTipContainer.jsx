@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import {PortalTipContent} from './PortalTipContent';
+import './portal-tip.scss';
 
 class PortalTipContainer extends React.PureComponent {
   _timeoutID = 0;
