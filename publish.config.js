@@ -5,24 +5,26 @@ const path = require('path');
 module.exports = {
     mode: 'production',
     entry: {
-        'index': ["@babel/polyfill", path.resolve(__dirname, './src/index.js')],
+        //'index': ["@babel/polyfill", path.resolve(__dirname, './src/index.js')],
+        'main':path.resolve(__dirname, './src/main.js'),
+    },
+
+    externals: {
+        'react': 'commonjs react',
+        'react-dom': 'commonjs react-dom'
     },
 
     output: {
         filename: './[name].js',
-        path: path.resolve(__dirname, './public'),
+        path: path.resolve(__dirname, './dist'),
+        libraryTarget: 'commonjs2'
     },
 
     resolve: {
         extensions: ['.js', '.jsx', '.less'],
         modules: [path.resolve(__dirname, 'node_modules')],
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-            // both options are optional
-            filename: "[name].css",
-        })
-    ],
+
     module: {
         rules: [
             {
@@ -36,18 +38,11 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    'style-loader',
                     'css-loader',
                     'sass-loader',
                 ],
             }
         ]
-    },
-
-    optimization: {
-        splitChunks: {
-            name: 'common',
-            chunks: 'all'
-        }
-    },
+    }
 };

@@ -1,5 +1,5 @@
 {
-  "name": "@vaden/reactportaltooltip",
+  "name": "PortalToolTip",
   "keywords": [
     "react",
     "tooltip",
@@ -7,10 +7,11 @@
   ],
   "version": "1.0.0",
   "description": "Tooltip for React app with Portals",
-  "main": "./src/index.js",
+  "main": "./dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "publish": "webpack --config publish.config.js"
   },
   "repository": {
     "type": "git",
