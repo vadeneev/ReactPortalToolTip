@@ -1,6 +1,6 @@
 .portal-tip {
   &__body {
-    position: absolute;
+    position: absolute;    
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 13px;
@@ -13,17 +13,28 @@
 
   &__arrow {
     position: absolute;
-    z-index: 5;
     display: block;
     width: 0;
     height: 0;
+    border: 5px solid #fff;
+    transform-origin: center;
+    transform: rotate(-45deg);
+    z-index: 5;
 
-    &--top {
-      bottom: 100%;
+    &--top {      
       box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
-      border: 5px solid #fff;
-      transform-origin: 0 0;
-      transform: rotate(-45deg);
+    }
+
+    &--bottom {      
+      box-shadow: 2px -2px 3px rgba(0, 0, 0, 0.1);      
+    }
+
+    &--right {      
+      box-shadow: -2px -2px 3px rgba(0, 0, 0, 0.1);      
+    }
+
+    &--left {      
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);      
     }
   }
 }

@@ -11,6 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
+    "watch": "webpack --watch",    
     "publish": "webpack --config publish.config.js"
   },
   "repository": {
