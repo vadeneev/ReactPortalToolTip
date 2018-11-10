@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import {PortalTipContent} from './PortalTipContent';
 import './portal-tip.scss';
 
-class PortalTipContainer extends React.PureComponent {
+class PortalTipContainer extends React.Component {
   _timeoutID = 0;
 
   constructor(props) {

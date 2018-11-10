@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import propTypes from 'prop-types';
 
-class PortalTipContent extends React.PureComponent {
+class PortalTipContent extends React.Component {
   constructor(props) {
     super(props);
     this.bodyRef = React.createRef();
@@ -95,7 +95,7 @@ class PortalTipContent extends React.PureComponent {
     const nextTop = top + visibleHeight / 2  - tooltipHeight / 2;
     const body = {...{left: nextLeft}, ...this.reviewYaxis(nextTop, tooltipHeight)};    
     const arrow = {
-      top: top + visibleHeight / 2 - arrowHeight / 2  ,
+      top: top + visibleHeight / 2 - arrowHeight / 2,
       left: left + visibleWidth + arrowWidth / 2
     };
 
@@ -106,7 +106,7 @@ class PortalTipContent extends React.PureComponent {
     const {tooltipHeight, tooltipWidth, arrowHeight, arrowWidth} = this.getDimensions();
     const nextLeft = left - tooltipWidth - arrowWidth;
     const nextTop = top + visibleHeight / 2  - tooltipHeight / 2;
-    const body = {...{left: nextLeft}, ...this.reviewYaxis(nextTop, tooltipHeight)};    
+    const body = {...{left: nextLeft}, ...this.reviewYaxis(nextTop, tooltipHeight)};
     const arrow = {
       top: top + visibleHeight / 2 - arrowHeight / 2,
       left: left - arrowWidth * 1.5
