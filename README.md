@@ -9,11 +9,6 @@ Simple React JS 16+ tooltip:
   - Ready to work
   - Tested with ie11+ 
   - Hover and click(touch)
-
-# Limitations!
-
-  - 1.0.0 contains only top direction
-  
   
 # Simple declarative usage:
 
@@ -47,5 +42,5 @@ Simple React JS 16+ tooltip:
 |max-width				|set max-width            |string (auto)           |
 |extraBodyClass|extra class for content|string ('')           |
 |children|all that wrapped by component|any|
-|position|direction for tooltip (top,bottom etc)|string (top)|
+|position|direction for tooltip (top, bottom, left, right)|string (top)|
 |targetElement|point to|object (node pass through parent)|
