@@ -22,14 +22,21 @@
       bottom: 100%;
       box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
       border: 5px solid #fff;
-      transform-origin: 0 0;
+      transform-origin: center;
       transform: rotate(-45deg);
     }
 
     &--right {      
       box-shadow: -2px -2px 3px rgba(0, 0, 0, 0.1);
       border: 5px solid #fff;
-      transform-origin: 0 0;
+      transform-origin: center;
+      transform: rotate(-45deg);
+    }
+
+    &--left {      
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+      border: 5px solid #fff;
+      transform-origin: center;
       transform: rotate(-45deg);
     }
   }

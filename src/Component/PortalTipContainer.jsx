@@ -97,7 +97,7 @@ class PortalTipContainer extends React.PureComponent {
     }
   }
 
-  closeToolTip() {    
+  closeToolTip() {        
     this.wipeTimer();
     this.unSubscribeCloseHandlers();
     this.props.willCloseCallback && this.props.willCloseCallback();

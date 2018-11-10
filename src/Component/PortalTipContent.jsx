@@ -38,8 +38,15 @@ class PortalTipContent extends React.PureComponent {
     switch (this.props.position) {
       case 'auto':
       case 'bottom':
+        console.warn('not implemented');
+        break;
       case 'left':
-      console.warn('not implemented');
+        ({body, arrow} = this.calculateLeftPosition({
+          left,
+          top,
+          visibleHeight,
+          visibleWidth
+        }));
         break;
       case 'right':
         ({body, arrow} = this.calculateRightPosition({
@@ -75,7 +82,7 @@ class PortalTipContent extends React.PureComponent {
     const nextLeft = left + visibleWidth / 2 - tooltipWidth / 2;
     const body = {...this.reviewXaxis(nextLeft, tooltipWidth), ...{top: top - tooltipHeight - arrowHeight}};
     const arrow = {
-      top: top - arrowHeight,
+      top: top - arrowHeight * 1.5,
       left: left + visibleWidth / 2 - arrowWidth / 2
     };
 
@@ -88,8 +95,21 @@ class PortalTipContent extends React.PureComponent {
     const nextTop = top + visibleHeight / 2  - tooltipHeight / 2;
     const body = {...{left: nextLeft}, ...this.reviewYaxis(nextTop, tooltipHeight)};    
     const arrow = {
-      top: top + visibleHeight / 2 ,
-      left: left + visibleWidth + 3
+      top: top + visibleHeight / 2 - arrowHeight / 2  ,
+      left: left + visibleWidth + arrowWidth / 2
+    };
+
+    return {body, arrow};
+  }
+
+  calculateLeftPosition({left, top, visibleHeight, visibleWidth}) {    
+    const {tooltipHeight, tooltipWidth, arrowHeight, arrowWidth} = this.getDimensions();
+    const nextLeft = left - tooltipWidth - arrowWidth;
+    const nextTop = top + visibleHeight / 2  - tooltipHeight / 2;
+    const body = {...{left: nextLeft}, ...this.reviewYaxis(nextTop, tooltipHeight)};    
+    const arrow = {
+      top: top + visibleHeight / 2 - arrowHeight / 2,
+      left: left - arrowWidth * 1.5
     };
 
     return {body, arrow};
