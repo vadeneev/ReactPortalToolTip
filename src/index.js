@@ -32,7 +32,7 @@ const App = () => (
             </PortalTipContainer>
 
             <PortalTipContainer>
-                <PortalTipContent>Just simple text in tooltip.</PortalTipContent>
+                <PortalTipContent position="bottom">Just simple text in tooltip.</PortalTipContent>
 
                 <div className="demo-box">1</div>
             </PortalTipContainer>

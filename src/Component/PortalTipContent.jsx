@@ -35,10 +35,14 @@ class PortalTipContent extends React.Component {
     let body = {};
     let arrow = {};
 
-    switch (this.props.position) {
-      case 'auto':
+    switch (this.props.position) {      
       case 'bottom':
-        console.warn('not implemented');
+        ({body, arrow} = this.calculateBottomPosition({
+          left,
+          top,
+          visibleHeight,
+          visibleWidth
+        }));
         break;
       case 'left':
         ({body, arrow} = this.calculateLeftPosition({
@@ -83,6 +87,18 @@ class PortalTipContent extends React.Component {
     const body = {...this.reviewXaxis(nextLeft, tooltipWidth), ...{top: top - tooltipHeight - arrowHeight}};
     const arrow = {
       top: top - arrowHeight * 1.5,
+      left: left + visibleWidth / 2 - arrowWidth / 2
+    };
+
+    return {body, arrow};
+  }
+
+  calculateBottomPosition({left, top, visibleWidth, visibleHeight}) {
+    const {tooltipHeight, tooltipWidth, arrowHeight, arrowWidth} = this.getDimensions();
+    const nextLeft = left + visibleWidth / 2 - tooltipWidth / 2;
+    const body = {...this.reviewXaxis(nextLeft, tooltipWidth), ...{top: top + visibleHeight + arrowHeight}};
+    const arrow = {
+      top: top + visibleHeight + arrowHeight / 2,
       left: left + visibleWidth / 2 - arrowWidth / 2
     };
 
