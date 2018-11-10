@@ -19,6 +19,7 @@ class PortalTipContent extends React.PureComponent {
     };
 
     this.setPositions = this.setPositions.bind(this);
+    this.getDimensions = this.getDimensions.bind(this);
   }
 
   componentDidMount() {
@@ -33,27 +34,26 @@ class PortalTipContent extends React.PureComponent {
   setPositions({left, top, visibleWidth, visibleHeight}) {
     let body = {};
     let arrow = {};
-    let tooltipWidth = this.bodyRef.current.scrollWidth;
-    let tooltipHeight = this.bodyRef.current.scrollHeight;
-    let arrowWidth = this.arrowRef.current.offsetWidth;
-    let arrowHeight = this.arrowRef.current.offsetHeight;
 
     switch (this.props.position) {
       case 'auto':
       case 'bottom':
       case 'left':
+      console.warn('not implemented');
+        break;
       case 'right':
-        console.warn('not implemented');
+        ({body, arrow} = this.calculateRightPosition({
+          left,
+          top,
+          visibleHeight,
+          visibleWidth
+        }));
         break;
       default:
         ({body, arrow} = this.calculateTopPosition({
           left,
           top,
-          visibleWidth,
-          arrowHeight,
-          tooltipHeight,
-          tooltipWidth,
-          arrowWidth
+          visibleWidth
         }));
         break;
     }
@@ -61,12 +61,35 @@ class PortalTipContent extends React.PureComponent {
     this.setState({body, arrow});
   }
 
-  calculateTopPosition({left, top, visibleWidth, arrowHeight, tooltipHeight, tooltipWidth, arrowWidth}) {
+  getDimensions() {
+    const tooltipWidth = this.bodyRef.current.scrollWidth;
+    const tooltipHeight = this.bodyRef.current.scrollHeight;
+    const arrowWidth = this.arrowRef.current.offsetWidth;
+    const arrowHeight = this.arrowRef.current.offsetHeight;
+
+    return {tooltipHeight, tooltipWidth, arrowHeight, arrowWidth};
+  }
+
+  calculateTopPosition({left, top, visibleWidth}) {
+    const {tooltipHeight, tooltipWidth, arrowHeight, arrowWidth} = this.getDimensions();
     const nextLeft = left + visibleWidth / 2 - tooltipWidth / 2;
     const body = {...this.reviewXaxis(nextLeft, tooltipWidth), ...{top: top - tooltipHeight - arrowHeight}};
     const arrow = {
       top: top - arrowHeight,
       left: left + visibleWidth / 2 - arrowWidth / 2
+    };
+
+    return {body, arrow};
+  }
+
+  calculateRightPosition({left, top, visibleHeight, visibleWidth}) {    
+    const {tooltipHeight, tooltipWidth, arrowHeight, arrowWidth} = this.getDimensions();
+    const nextLeft = left + visibleWidth + arrowWidth;
+    const nextTop = top + visibleHeight / 2  - tooltipHeight / 2;
+    const body = {...{left: nextLeft}, ...this.reviewYaxis(nextTop, tooltipHeight)};    
+    const arrow = {
+      top: top + visibleHeight / 2 ,
+      left: left + visibleWidth + 3
     };
 
     return {body, arrow};
@@ -93,7 +116,24 @@ class PortalTipContent extends React.PureComponent {
     return {left: nextLeft};
   }
 
-  getOffset(boundRect) {
+  reviewYaxis(nextTop, bodyHeight) {
+    const nextBottom = nextTop + bodyHeight;
+    const curPageBottom = window.innerHeight + (window.scrollY || window.pageYOffset || 0);
+    const top = 5;    
+
+    if (nextBottom >= curPageBottom) {
+      const newTop = nextTop - nextBottom + curPageBottom;
+
+      return {top: newTop};
+    }
+
+    if (nextTop <= 0)
+      return {top};
+
+    return {top: nextTop};
+  }
+
+  getOffset(boundRect) {    
     const xOffset = window.scrollX || window.pageXOffset;
     const yOffset = window.scrollY || window.pageYOffset;
     const left = boundRect.left + xOffset;

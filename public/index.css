@@ -21,4 +21,9 @@
     border: 5px solid #fff;
     transform-origin: 0 0;
     transform: rotate(-45deg); }
+  .portal-tip__arrow--right {
+    box-shadow: -2px -2px 3px rgba(0, 0, 0, 0.1);
+    border: 5px solid #fff;
+    transform-origin: 0 0;
+    transform: rotate(-45deg); }
 

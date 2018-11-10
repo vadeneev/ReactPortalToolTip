@@ -3,25 +3,47 @@ import {render} from 'react-dom';
 import {PortalTipContainer} from "./Component/PortalTipContainer";
 import {PortalTipContent} from "./Component/PortalTipContent";
 
-const App = () => (
+const App = () => (    
     <main>
-        <PortalTipContainer>
-            <PortalTipContent>Just simple text in tooltip.</PortalTipContent>
+        <section>
+            <PortalTipContainer>
+                <PortalTipContent>Just simple text in tooltip.</PortalTipContent>
 
-            <div className="demo-box">1</div>
-        </PortalTipContainer>
+                <div className="demo-box">1</div>
+            </PortalTipContainer>
 
-        <PortalTipContainer>
-            <PortalTipContent>Just simple text in tooltip.</PortalTipContent>
+            <PortalTipContainer>
+                <PortalTipContent>Just simple text in tooltip.</PortalTipContent>
 
-            <div className="demo-box">1</div>
-        </PortalTipContainer>
+                <div className="demo-box">1</div>
+            </PortalTipContainer>
 
-        <PortalTipContainer>
-            <PortalTipContent>Just simple text in tooltip.</PortalTipContent>
-            <div className="demo-box">1</div>
-        </PortalTipContainer>
-    </main>
+            <PortalTipContainer>
+                <PortalTipContent>Just simple text in tooltip.</PortalTipContent>
+                <div className="demo-box">1</div>
+            </PortalTipContainer>
+        </section>
+
+        <section>
+            <PortalTipContainer>
+                <PortalTipContent position="right">Just simple text in tooltip.</PortalTipContent>
+
+                <div className="demo-box">1</div>
+            </PortalTipContainer>
+
+            <PortalTipContainer>
+                <PortalTipContent>Just simple text in tooltip.</PortalTipContent>
+
+                <div className="demo-box">1</div>
+            </PortalTipContainer>
+
+            <PortalTipContainer>
+                <PortalTipContent position="left">Just simple text in tooltip.</PortalTipContent>
+                <div className="demo-box">1</div>
+            </PortalTipContainer>
+        </section>
+
+    </main>    
 );
 
 render(<App />, document.getElementById('app'));
