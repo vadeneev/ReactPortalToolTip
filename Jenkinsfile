@@ -2,9 +2,17 @@ pipeline {
   agent any
   stages {
     stage('install') {
-      steps {
-        sh 'npm ci'
-        sh 'npm build'
+      parallel {
+        stage('install') {
+          steps {
+            sh 'npm ci'
+          }
+        }
+        stage('build') {
+          steps {
+            sh 'npm run build'
+          }
+        }
       }
     }
   }
